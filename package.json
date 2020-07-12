@@ -1,0 +1,25 @@
+{
+  "name": "harrydig",
+  "version": "1.0.0",
+  "description": "Working on a clone of Mr. Driller in javascript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel serve ./index.html",
+    "build": "parcel build ./index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paloblanco/harrydig.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paloblanco/harrydig/issues"
+  },
+  "homepage": "https://github.com/paloblanco/harrydig#readme",
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.1"
+  }
+}
