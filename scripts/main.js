@@ -1,6 +1,7 @@
 import phoenixSheet from "url:../assets/phoenix2_nokia.png"
 import fontSheet from "url:../assets/pico8_font_nokia.png"
 import SFX from "url:../assets/sound_0.wav"
+import * as ezg from "./ezg.js"
 
 /*
 ################
@@ -12,6 +13,7 @@ let context, controller, rectangle, loop, update, draw, ctx, offCanvas, pixelRat
 let baseheight, basewidth, basescale, colors;
 
 
+ezg.testFunc();
 
 /*
 ################
