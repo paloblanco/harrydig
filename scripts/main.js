@@ -102,37 +102,10 @@ CONTROLLER
 ################
 */
 
-controller = {
 
-left:false,
-right:false,
-up:false,
-down:false,
-keyListener:function(event) {
-var key_state = (event.type == "keydown")?true:false;
-switch(event.keyCode) {
-case 37:// left key
-  controller.left = key_state;
-break;
-case 38:// up key
-  controller.up = key_state;
-break;
-case 39:// right key
-  controller.right = key_state;
-break;
-case 40:// down key
-  controller.down = key_state;
-break;
-}
-}
-};
+controller = new ezg.Controller();
+controller.sayString("hello?");
 
-window.addEventListener("keydown", function(e) {
-// space and arrow keys
-if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-    e.preventDefault();
-}
-}, false);
 
 /*
 ################
@@ -562,6 +535,6 @@ SET UP LISTENERS AND START!
 ################
 */
 
-window.addEventListener("keydown", controller.keyListener);
-window.addEventListener("keyup", controller.keyListener);
+
+controller.start();
 window.requestAnimationFrame(loop);

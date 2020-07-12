@@ -48,6 +48,10 @@ export class Controller {
         }
     }
 
+    sayString(string) {
+        console.log(string)
+    }
+
     start() {
         window.addEventListener("keydown", function(e) {
             // space and arrow keys
@@ -55,8 +59,9 @@ export class Controller {
                 e.preventDefault();
             }
             }, false);
-        window.addEventListener("keydown", this.keyListener);
-        window.addEventListener("keyup", this.keyListener);
+     
+        window.addEventListener("keydown", event => {this.keyListener(event)});
+        window.addEventListener("keyup", event => {this.keyListener(event)});
 
     }
 }
