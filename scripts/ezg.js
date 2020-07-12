@@ -48,10 +48,6 @@ export class Controller {
         }
     }
 
-    sayString(string) {
-        console.log(string)
-    }
-
     start() {
         window.addEventListener("keydown", function(e) {
             // space and arrow keys
@@ -64,10 +60,45 @@ export class Controller {
         window.addEventListener("keyup", event => {this.keyListener(event)});
 
     }
-}
-
-    
-    
+}   
 
 
 //SOUNDS
+
+export class Sound {
+    constructor(src, volume=0.5) {
+        this.snd = document.createElement("audio");
+        this.snd.src = src;
+        this.snd.setAttribute("preload", "auto");
+        this.snd.setAttribute("controls", "none");
+        this.snd.style.display = "none";
+        this.snd.volume = volume;
+        document.body.appendChild(this.snd);
+    }
+    play() {
+        this.snd.play();
+    }
+    stop() {
+        this.snd.pause();
+    }
+}
+
+export class Music {
+    volume = 0.5;
+    constructor(src, volume=0.5) {
+        this.snd = document.createElement("audio");
+        this.snd.src = src;
+        this.snd.setAttribute("preload", "auto");
+        this.snd.setAttribute("controls", "none");
+        this.snd.style.display = "none";
+        this.snd.loop = true;
+        this.snd.volume = volume;
+        document.body.appendChild(this.snd);
+    }
+    play() {
+        this.snd.play();
+    }
+    stop() {
+        this.snd.pause();
+    }
+}

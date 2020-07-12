@@ -78,23 +78,14 @@ ctx.drawImage(font_sheet,xsheet,ysheet,8,8,x+4*ii,y,8,8);
 var sprite_sheet = new Image();
 sprite_sheet.src = phoenixSheet;//"phoenix2_nokia.png";
 
-// set up sounds
-function sound(src) {
-this.sound = document.createElement("audio");
-this.sound.src = src;
-this.sound.setAttribute("preload", "auto");
-this.sound.setAttribute("controls", "none");
-this.sound.style.display = "none";
-document.body.appendChild(this.sound);
-this.play = function(){
-this.sound.play();
-}
-this.stop = function(){
-this.sound.pause();
-}
-};
 
-var beep = new sound(SFX);
+/*
+################
+SOUNDS
+################
+*/
+
+var beep = new ezg.Sound(SFX);
 
 /*
 ################
@@ -102,10 +93,7 @@ CONTROLLER
 ################
 */
 
-
 controller = new ezg.Controller();
-controller.sayString("hello?");
-
 
 /*
 ################
