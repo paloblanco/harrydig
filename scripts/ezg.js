@@ -19,6 +19,38 @@ export let testFunc = function() {
 
 //CANVASES AND DRAWING
 
+export class GameWindow {
+    height = 128*4;
+    width = 128*4;
+    virtualHeight = 128;
+    virtualWidth = 128;
+    constructor(height, width, virtualHeight, virtualWidth) {
+        this.height = height;
+        this.width = width;
+        this.context = document.querySelector("canvas").getContext("2d");
+        this.context.canvas.height = this.height;
+        this.context.canvas.width = this.width;
+        this.context.imageSmoothingEnabled = false;
+        this.virtualCanvas = new DrawCanvas(virtualHeight, virtualWidth);
+    }
+
+    flip() {
+        this.context.drawImage(this.virtualCanvas.canvas,0,0,this.width,this.height);
+    }
+
+}
+
+export class DrawCanvas {
+    constructor(height = 128, width = 128) {
+        this.height = height;
+        this.width = width;
+        this.canvas = document.createElement("canvas");
+        this.canvas.width = width;
+        this.canvas.height = height;
+        this.context = this.canvas.getContext("2d");
+        this.context.imageSmoothingEnabled = false;
+    }
+}
 
 //CONTROLLER
 export class Controller {

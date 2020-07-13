@@ -37,13 +37,7 @@ offCanvas.style.imageRendering = "pixelated";
 ctx = offCanvas.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 
-context = document.querySelector("canvas").getContext("2d");
-context.canvas.height = targetheight * pixelRatio;
-context.canvas.style.height = '${targetheight}px'
-context.canvas.width = targetwidth * pixelRatio;
-context.canvas.style.width = '${targetwidth}px'
-// context.scale(basescale*pixelRatio, basescale*pixelRatio);
-context.imageSmoothingEnabled = false;
+let gameWindow = new ezg.GameWindow(targetheight, targetwidth, baseheight, basewidth);
 
 colors = ["#c7f0d8", "#43523d"];
 
@@ -70,7 +64,7 @@ if (char < 65) {
   ysheet = 48 + 8*Math.floor((char - 64)/16);
   xsheet = ((char - 64)%16)*8;
 };
-ctx.drawImage(font_sheet,xsheet,ysheet,8,8,x+4*ii,y,8,8);
+gameWindow.virtualCanvas.context.drawImage(font_sheet,xsheet,ysheet,8,8,x+4*ii,y,8,8);
 }
 };
 
@@ -408,9 +402,9 @@ DRAW
 */
 
 draw = function() {
-ctx.fillStyle = colors[1];
-ctx.fillRect(0, 0, 84, 48);// x, y, width, height
-ctx.fillStyle = colors[0];
+gameWindow.virtualCanvas.context.fillStyle = colors[1];
+gameWindow.virtualCanvas.context.fillRect(0, 0, 84, 48);// x, y, width, height
+gameWindow.virtualCanvas.context.fillStyle = colors[0];
 
 
 // draw the level
@@ -422,10 +416,10 @@ for (let row = 0; row < 6; row ++) {
     let y_sprite = (Math.floor(thislevel[ix]/16)*8);
     if (thislevel[ix] == 19) {
       if (!plate) {
-        ctx.drawImage(sprite_sheet,x_sprite,y_sprite,8,8,2+col*8, row*8,8,8);  
+        gameWindow.virtualCanvas.context.drawImage(sprite_sheet,x_sprite,y_sprite,8,8,2+col*8, row*8,8,8);  
       }
     } else {
-      ctx.drawImage(sprite_sheet,x_sprite,y_sprite,8,8,2+col*8, row*8,8,8);    
+      gameWindow.virtualCanvas.context.drawImage(sprite_sheet,x_sprite,y_sprite,8,8,2+col*8, row*8,8,8);    
     }
   }
 };
@@ -433,40 +427,40 @@ for (let row = 0; row < 6; row ++) {
 
 //draw the phoenix
 if (!phoenix.dead) {
-  ctx.drawImage(sprite_sheet,0,16,8,8,phoenix.x_draw, phoenix.y_draw,8,8);
+  gameWindow.virtualCanvas.context.drawImage(sprite_sheet,0,16,8,8,phoenix.x_draw, phoenix.y_draw,8,8);
 } else {
-  ctx.drawImage(sprite_sheet,0,8,8,8,phoenix.x_draw, phoenix.y_draw,8,8);
+  gameWindow.virtualCanvas.context.drawImage(sprite_sheet,0,8,8,8,phoenix.x_draw, phoenix.y_draw,8,8);
 }
 
 if (phoenix.flash) {
   if (timer % 4 > 1) {
-    ctx.fillRect(phoenix.x_draw-1, phoenix.y_draw-1, 10, 10)
+    gameWindow.virtualCanvas.context.fillRect(phoenix.x_draw-1, phoenix.y_draw-1, 10, 10)
   }
 }
 if (phoenix.glow) {
   if (timer % 4 > 0) {
-    ctx.fillRect(phoenix.x_draw-3, phoenix.y_draw-3, 14, 14)
+    gameWindow.virtualCanvas.context.fillRect(phoenix.x_draw-3, phoenix.y_draw-3, 14, 14)
   }
 }
 if (phoenix.glowtime > timer) {
   
-    ctx.fillRect(phoenix.x_draw-6, phoenix.y_draw-6, 20, 20)
+  gameWindow.virtualCanvas.context.fillRect(phoenix.x_draw-6, phoenix.y_draw-6, 20, 20)
   
 }
 
 
-ctx.fillStyle = colors[0];
+gameWindow.virtualCanvas.context.fillStyle = colors[0];
 
 //draw corpses
 for (let i = 0; i < corpselist.length; i++) {
-  ctx.drawImage(sprite_sheet,8,0,8,8,corpselist[i].x_draw, corpselist[i].y_draw,8,8);
+  gameWindow.virtualCanvas.context.drawImage(sprite_sheet,8,0,8,8,corpselist[i].x_draw, corpselist[i].y_draw,8,8);
 }
 
 
 
-ctx.font = "8px Arial";
+gameWindow.virtualCanvas.context.font = "8px Arial";
 // ctx.fillStyle = "red";
-ctx.textAlign = "left";
+gameWindow.virtualCanvas.context.textAlign = "left";
 
 
 // print("it is alive", 12,28);
@@ -487,7 +481,8 @@ if (currentlevel == 15) {
 }
 
 // context.scale(basescale*pixelRatio, basescale*pixelRatio);
-context.drawImage(offCanvas,0,0,pixelRatio*basescale*84,pixelRatio*basescale*48);
+// gameWindow.context.drawImage(offCanvas,0,0,pixelRatio*basescale*84,pixelRatio*basescale*48);
+gameWindow.flip();
 // context.scale(1, 1);
 
 
