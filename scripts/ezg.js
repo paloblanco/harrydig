@@ -52,6 +52,28 @@ export class DrawCanvas {
     }
 }
 
+export class SpriteSheet {
+    
+    constructor(src,spriteHeight = 8, spriteWidth = 8) {
+        this.sheet = new Image();
+        this.sheet.src = src;
+        this.spriteHeight = spriteHeight;
+        this.spriteWidth = spriteWidth;
+        this.height = this.sheet.height;
+        this.width = this.sheet.width;
+        this.spriteCountHorizontal = Math.floor(this.width/this.spriteWidth);
+        this.spriteCountVertical = Math.floor(this.width/this.spriteWidth);
+    }
+    spr(ix, dst) {
+        let xSprite = (ix % this.spriteCountHorizontal) * this.spriteWidth;
+        let ySprite = Math.floor(ix / this.spriteCountVertical) * this.spriteHeight;
+
+        dst.drawImage(this.sheet,x_sprite,y_sprite,8,8,2+col*8, row*8,8,8); 
+
+        context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
+    }
+}
+
 //CONTROLLER
 export class Controller {
     

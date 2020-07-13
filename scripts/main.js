@@ -13,8 +13,6 @@ let context, controller, rectangle, loop, update, draw, ctx, offCanvas, pixelRat
 let baseheight, basewidth, basescale, colors;
 
 
-ezg.testFunc();
-
 /*
 ################
 CANVAS SETUP
@@ -26,21 +24,10 @@ basewidth = 84;
 basescale = 6;
 let targetheight = baseheight*basescale;
 let targetwidth = basewidth*basescale;
-pixelRatio = 1;//window.devicePixelRatio;
-
-//OFFSCREEN CANVAS
-
-offCanvas = document.createElement("canvas");
-offCanvas.width = basewidth;
-offCanvas.height = baseheight;
-offCanvas.style.imageRendering = "pixelated";
-ctx = offCanvas.getContext("2d");
-ctx.imageSmoothingEnabled = false;
 
 let gameWindow = new ezg.GameWindow(targetheight, targetwidth, baseheight, basewidth);
 
 colors = ["#c7f0d8", "#43523d"];
-
 
 /*
 ################
@@ -480,11 +467,7 @@ if (currentlevel == 15) {
 
 }
 
-// context.scale(basescale*pixelRatio, basescale*pixelRatio);
-// gameWindow.context.drawImage(offCanvas,0,0,pixelRatio*basescale*84,pixelRatio*basescale*48);
 gameWindow.flip();
-// context.scale(1, 1);
-
 
 }
 
